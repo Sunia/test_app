@@ -45,4 +45,3 @@ end
 gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'haml-rails'
-ruby "2.2.0"
