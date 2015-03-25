@@ -7,7 +7,7 @@
   .clearfix
 
 .innerLR
-  = form_for :email, :url => {:controller => "emails", :action => "send_email", :method => "post" } do |f|
+  = form_for :email, :url => {:controller => "emails", :action => "create", :method => "post" } do |f|
 
     .widget.widget-tabs
       .widget-body
@@ -16,17 +16,30 @@
  
             .row-fluid
               .span3
-                %strong Enter Email ID
-                %p.muted Send Email wishing nice day.
+                %strong Choose question
+                %p.muted Choose question to ask from all senders..
               .span9
-                %label{:for => "inputTitle"} Email ID
-                = f.email_field :email, class: "span6"  ,placeholder: "Enter Email ID ..."
+                %label{:for => "inputTitle"} Choose question
+                = f.collection_select :question_id, Question.order(:description),:id,:description, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
 
+            .row-fluid
+              .span3
+                %strong Choose Listener
+                %p.muted Choose Listener on the behalf of which you want to ask question.
+              .span9
+                %label{:for => "inputTitle"} Listener Name
+                = f.collection_select :listener_id, User.order(:email),:id,:email, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
+                = f.hidden_field :questioner_id, value: current_user.id
+                .separator
+            %hr.separator.bottom/
+
+
+
       .heading-buttons
         .buttons.pull-right{:style => "margin: 0;"}
-          = f.submit "Send Email", :class => "btn btn-primary btn-icon glyphicons ok_2"
+          = f.submit "Send Email to all Users", :class => "btn btn-primary btn-icon glyphicons ok_2"
 
 %br
 %br
