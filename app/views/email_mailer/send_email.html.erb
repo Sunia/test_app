@@ -4,8 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1> Hi, Its #{@questioner_email}
-    #{listener_email} wants to know #{@question}. Please answer.</h1>
+    <h4> Hi, Its <%= @questioner %> </h4>
+    <br>
+    <%= @listener %> wants to know <%= @question %>. Please answer.</h1>
     <br>
     
   </body>

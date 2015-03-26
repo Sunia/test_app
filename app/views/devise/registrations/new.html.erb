@@ -26,6 +26,9 @@
 		<div class="row-fluid">
 			<div class="span6">
 				<div class="inner">
+					<label class="strong">Username</label>
+					<%= f.text_field :username, autofocus: true, class: "input-block-level", placeholder: "Username" %>
+			
 					<label class="strong">Email</label>
 					<%= f.email_field :email, autofocus: true, class: "input-block-level", placeholder: "Your Email Address" %>
 					

@@ -30,7 +30,7 @@
                 %p.muted Choose Listener on the behalf of which you want to ask question.
               .span9
                 %label{:for => "inputTitle"} Listener Name
-                = f.collection_select :listener_id, User.order(:email),:id,:email, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
+                = f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 = f.hidden_field :questioner_id, value: current_user.id
                 .separator
             %hr.separator.bottom/

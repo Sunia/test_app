@@ -4,12 +4,13 @@ class EmailMailer < ApplicationMailer
   
     def send_email(email)
      #attachments.inline['player.jpeg'] = File.read(Rails.root.join('app/assets/images/player.jpeg'))
-      
-      User.all.each do |user|
-        @questioner_email = User.find(email[:questioner_id]).email
-        @listener_email = User.find(email[:listener_id]).email
+        @questioner = User.find(email[:questioner_id]).username
+        @listener_obj = User.find(email[:listener_id])
+        @listener = @listener_obj.username
         @question = Question.find(email[:question_id]).description
-        mail(to: user.email, subject: 'Hi Its #{@questioner_email}')
+     
+      User.all.each do |user|
+        mail(to: user.email, subject: 'Please answer the Question') if @listener_obj.username != user.username
       end
     end
 
