@@ -29,7 +29,7 @@ class EmailsController < ApplicationController
     respond_to do |format|
       if @email.save
         EmailMailer.send_email(params[:email]).deliver_now 
-        format.html { redirect_to @email, notice: 'Email has sent' }
+        format.html { redirect_to :back, notice: 'Email has sent to all senders for replying the answer' }
         flash[:notice] = "Email has sent"
         format.json { render :show, status: :created, location: @email }
       else
