@@ -25,11 +25,10 @@ class EmailsController < ApplicationController
   # POST /emails.json
   def create
     @email = Email.new(email_params)
-
     respond_to do |format|
       if @email.save
         EmailMailer.send_email(params[:email]).deliver_now 
-        format.html { redirect_to :back, notice: 'Email has sent to all senders for replying the answer' }
+        format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
         flash[:notice] = "Email has sent"
         format.json { render :show, status: :created, location: @email }
       else
@@ -77,6 +76,6 @@ class EmailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_params
-      params.require(:email).permit(:question, :listener_id, :questioner_id)
+      params.require(:email).permit(:question, :listener_id, :questioner_id, :sender_ids => [])
     end
 end

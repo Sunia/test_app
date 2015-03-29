@@ -8,9 +8,11 @@ class EmailMailer < ApplicationMailer
       @listener_obj = User.find(email[:listener_id])
       @listener = @listener_obj.username
       @question =  email[:question]
-     
-      User.all.each do |user|
-        mail(to: user.email, subject: 'Please answer the Question') if @listener_obj.username != user.username
+      @senders = email[:sender_ids].reject! { |c| c.empty? }
+
+      @senders.each do |sender|
+        user = User.find(sender)
+        mail(to: user.email, subject: 'Please answer the Question') #if @listener_obj.username != user.username
       end
     end
 
