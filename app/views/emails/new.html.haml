@@ -20,7 +20,7 @@
                 %p.muted Choose question to ask from all senders..
               .span9
                 %label{:for => "inputTitle"} Choose question
-                = f.text_field :question, placeholder: "Enter question..."
+                = f.text_field :question, placeholder: "Enter question...", required: true
                 =# f.collection_select :question_id, Question.order(:description),:id,:description, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
