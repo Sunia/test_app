@@ -1,0 +1,43 @@
+.heading-buttons
+  %br
+  %br
+  %h3
+    Submit Answer
+    %span | Please give the answer of the following question.
+  .clearfix
+
+.innerLR
+  = form_for :sender, :url => {:controller => "reply", :action => "submit_answer", :method => "post" } do |f|
+
+    .widget.widget-tabs
+      .widget-body
+        .tab-content
+          #productDescriptionTab.tab-pane.active
+
+            // Question
+            .row-fluid
+              %strong
+                = @question
+                .separator
+            %hr.separator.bottom/
+
+            // Listener
+            .row-fluid
+              .span3
+                %strong Your Answer
+                %p.muted Please give your answer of the mentioned question.
+              .span9
+                %label{:for => "inputTitle"} Answer
+                = f.text_field :reply, placeholder: "Your answer...", required: true
+
+                // Sender
+                = f.hidden_field :id, value: @sender.id
+                .separator
+            %hr.separator.bottom/
+
+      .heading-buttons
+        .buttons.pull-right{:style => "margin: 0;"}
+          = f.submit "Submit your answer", :class => "btn btn-primary btn-icon glyphicons ok_2"
+
+%br
+%br

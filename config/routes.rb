@@ -10,6 +10,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root to: "emails#new"
+
+
+  get 'reply/:link' => 'reply#ask_answer'
+  post 'submit_answer' => 'reply#submit_answer'
+
+  get '/thanks' => 'reply#thanks_message', :as => "thanks"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

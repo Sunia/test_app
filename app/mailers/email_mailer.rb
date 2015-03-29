@@ -1,17 +1,21 @@
 class EmailMailer < ApplicationMailer
-
+  require 'securerandom'
   default from: "from@test_app.com"
   
     def send_email(email)
       @questioner = User.find(email[:questioner_id]).username
-      @listener_obj = User.find(email[:listener_id])
-      @listener = @listener_obj.username
+      @listener = User.find(email[:listener_id]).username
       @question =  email[:question]
       @senders = email[:sender_ids].reject! { |c| c.empty? }
 
       @senders.each do |sender|
         user = User.find(sender)
-        mail(to: user.email, subject: 'Please answer the Question') #if @listener_obj.username != user.username
+        @random_key = SecureRandom.hex
+
+        @shorten_link = "https://sheltered-crag-1698.herokuapp.com/reply/" + @random_key
+        #@shorten_link = "localhost:3000/reply/" + @random_key
+        Sender.create(:email_id => email.id, :user_id => user.id, :unique_key => @random_key)
+        mail(to: user.email, subject: 'Please answer the Question') #if @listener != user.username
       end
     end
 

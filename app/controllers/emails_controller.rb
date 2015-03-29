@@ -27,7 +27,8 @@ class EmailsController < ApplicationController
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
-        EmailMailer.send_email(params[:email]).deliver_now 
+        
+        EmailMailer.send_email(@email).deliver_now 
         format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
         flash[:notice] = "Email has sent"
         format.json { render :show, status: :created, location: @email }
