@@ -34,7 +34,7 @@
                 %label{:for => "inputTitle"} Listener Name
                 = f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
-              %hr.separator.bottom/
+            %hr.separator.bottom/
 
             // Senders
             .row-fluid
