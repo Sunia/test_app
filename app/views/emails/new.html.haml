@@ -1,0 +1,32 @@
+.heading-buttons
+  %br
+  %br
+  %h3
+    Send Email
+    %span | according to entered Email ID.
+  .clearfix
+
+.innerLR
+  = form_for :email, :url => {:controller => "emails", :action => "send_email", :method => "post" } do |f|
+
+    .widget.widget-tabs
+      .widget-body
+        .tab-content
+          #productDescriptionTab.tab-pane.active
+ 
+            .row-fluid
+              .span3
+                %strong Enter Email ID
+                %p.muted Send Email wishing nice day.
+              .span9
+                %label{:for => "inputTitle"} Email ID
+                = f.email_field :email, class: "span6"  ,placeholder: "Enter Email ID ..."
+                .separator
+            %hr.separator.bottom/
+
+      .heading-buttons
+        .buttons.pull-right{:style => "margin: 0;"}
+          = f.submit "Send Email", :class => "btn btn-primary btn-icon glyphicons ok_2"
+
+%br
+%br

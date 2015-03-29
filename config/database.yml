@@ -1,0 +1,48 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  reconnect: false
+  database: test_app_development
+  pool: 5
+  host: localhost
+  username: postgres
+  password: root
+  
+test:
+  adapter: postgresql
+  encoding: unicode
+  reconnect: false
+  database: test_app_test
+  pool: 5
+  username: postgres
+  password: root
+  host: localhost
+  
+production:
+  adapter: postgresql
+  encoding: unicode
+  reconnect: false
+  database: test_app_production
+  pool: 5
+  username: postgres
+  password: root
+  host: localhost
+  
+
+# default: &default
+  # adapter: postgresql
+  # encoding: unicode
+  # # For details on connection pooling, see rails configuration guide
+  # # http://guides.rubyonrails.org/configuring.html#database-pooling
+  # pool: 5
+#   
+# development:
+  # <<: *default
+  # database: boo_development
+# 
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+  # <<: *default
+  # database: boo_test
