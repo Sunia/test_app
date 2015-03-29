@@ -45,3 +45,4 @@ end
 gem 'devise'
 gem 'rails_12factor', group: :production
 gem 'haml-rails'
+gem 'rails_admin'

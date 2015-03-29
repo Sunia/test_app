@@ -3,30 +3,60 @@
   %br
   %h3
     Send Email
-    %span | according to entered Email ID.
+    %span | to ask Question to particular senders on behalf of one user.
   .clearfix
 
 .innerLR
-  = form_for :email, :url => {:controller => "emails", :action => "send_email", :method => "post" } do |f|
+  = form_for :email, :url => {:controller => "emails", :action => "create", :method => "post" } do |f|
 
     .widget.widget-tabs
       .widget-body
         .tab-content
           #productDescriptionTab.tab-pane.active
- 
+
+            // Choose Question
             .row-fluid
               .span3
-                %strong Enter Email ID
-                %p.muted Send Email wishing nice day.
+                %strong Choose question
+                %p.muted Choose question to ask from all senders..
               .span9
-                %label{:for => "inputTitle"} Email ID
-                = f.email_field :email, class: "span6"  ,placeholder: "Enter Email ID ..."
+                %label{:for => "inputTitle"} Choose question
+                = f.text_field :question, placeholder: "Enter question...", required: true
                 .separator
             %hr.separator.bottom/
 
+            // Listener
+            .row-fluid
+              .span3
+                %strong Choose Listener
+                %p.muted Choose Listener on the behalf of which you want to ask question.
+              .span9
+                %label{:for => "inputTitle"} Listener Name
+                = f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
+                .separator
+            %hr.separator.bottom/
+
+            // Senders
+            .row-fluid
+              .span3
+                %strong Choose Senders
+                %p.muted Choose Senders to whom you want to ask question.
+              .span9
+                %label{:for => "inputTitle"} Senders
+                = f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
+ 
+                =# collection_select(:email, :listener_id, User.order(:username), :id, :name, {:include_blank => true}, {:multiple => true})
+ 
+                // Questioner
+                = f.hidden_field :questioner_id, value: current_user.id
+                .separator
+            %hr.separator.bottom/
+
+
+
       .heading-buttons
         .buttons.pull-right{:style => "margin: 0;"}
-          = f.submit "Send Email", :class => "btn btn-primary btn-icon glyphicons ok_2"
+          = f.submit "Send Email to all Users", :class => "btn btn-primary btn-icon glyphicons ok_2"
 
 %br
 %br

@@ -13,6 +13,10 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+<<<<<<< HEAD
+=======
+  #config.assets.precompile += %w(rails_admin/rails_admin.css rails_admin/rails_admin.js)
+>>>>>>> 2e24c26fc8f5149351d5291f95b3ecb0fb6403c0
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -29,7 +33,11 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+<<<<<<< HEAD
   config.assets.compile = false
+=======
+  #config.assets.compile = false
+>>>>>>> 2e24c26fc8f5149351d5291f95b3ecb0fb6403c0
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -84,9 +92,12 @@ Rails.application.configure do
    :address              => "smtp.gmail.com",
    :port                 => 587,
    :user_name            => "kalrasunia@gmail.com",
-   :password             => "arohi321",
+   :password             => "arohi1237",
    :authentication       => "plain",
   :enable_starttls_auto => true
   }
+  
+  config.assets.compile = true
+  config.assets.precompile += %w(rails_admin/rails_admin.css rails_admin/rails_admin.js)
 
 end
