@@ -24,10 +24,15 @@ class EmailsController < ApplicationController
   # POST /emails
   # POST /emails.json
   def create
+    @listener = User.where(:email => params[:email][:listener_id]).first
+
+    if @listener.nil?
+      @listener = User.create(:email => params[:email][:listener_id], :password => "12345678")
+    end
+    params[:email][:listener_id] = @listener.id
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
-        
         EmailMailer.send_email(@email).deliver_now 
         format.html { redirect_to :back, notice: 'Email has sent to selected senders for replying the answer' }
         flash[:notice] = "Email has sent"

@@ -17,32 +17,36 @@
             // Choose Question
             .row-fluid
               .span3
-                %strong Choose question
-                %p.muted Choose question to ask from all senders..
+                %strong Add question
+                %p.muted Add question to ask from all senders..
               .span9
-                %label{:for => "inputTitle"} Choose question
-                = f.text_field :question, placeholder: "Enter question...", required: true
+                %label{:for => "inputTitle"} Add question
+                = f.text_field :question, placeholder: "Add question...", required: true
                 .separator
             %hr.separator.bottom/
 
             // Listener
             .row-fluid
               .span3
-                %strong Choose Listener
-                %p.muted Choose Listener on the behalf of which you want to ask question.
+                %strong Add Listener
+                %p.muted Add Listener on the behalf of which you want to ask question.
               .span9
                 %label{:for => "inputTitle"} Listener Name
-                = f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
+                = f.email_field :listener_id, placeholder: "Add Listener", required: true
+                =# f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
 
             // Senders
             .row-fluid
               .span3
-                %strong Choose Senders
-                %p.muted Choose Senders to whom you want to ask question.
+                %strong Add Senders
+                %p.muted Add Senders to whom you want to ask question.
               .span9
                 %label{:for => "inputTitle"} Senders
+                =# email_field :sender1, placeholder: "Add Sender", required: true
+                =# email_field :sender2, placeholder: "Add Sender", required: true
+                =# email_field :sender3, placeholder: "Add Sender", required: true
                 = f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
  
                 =# collection_select(:email, :listener_id, User.order(:username), :id, :name, {:include_blank => true}, {:multiple => true})

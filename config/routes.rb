@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'submit_answer' => 'reply#submit_answer'
 
   get '/thanks' => 'reply#thanks_message', :as => "thanks"
+  get '/sorry' => 'reply#sorry_message', :as => "sorry"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
