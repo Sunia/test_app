@@ -3,7 +3,7 @@ class EmailMailer < ApplicationMailer
   default from: "from@test_app.com"
   
     def send_email(email)
-      @questioner = User.find(email[:questioner_id]).email
+      @questioner = User.find(email[:questioner_id]).username
       @listener = User.find(email[:listener_id]).email
       @question =  email[:question]
       @senders = email[:sender_ids].reject! { |c| c.empty? }

@@ -47,15 +47,20 @@
                 =# email_field :sender1, placeholder: "Add Sender", required: true
                 =# email_field :sender2, placeholder: "Add Sender", required: true
                 =# email_field :sender3, placeholder: "Add Sender", required: true
-                = f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
- 
+                =# f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
+                = f.email_field :question, placeholder: "Add question...", required: true
                 =# collection_select(:email, :listener_id, User.order(:username), :id, :name, {:include_blank => true}, {:multiple => true})
+                .input_fields_wrap
+                  %button.add_field_button Add More Fields
+                  %br
+                  %br
+                  %div
+                    %input{:name => "mytext[]", :type => "text"}/
  
                 // Questioner
                 = f.hidden_field :questioner_id, value: current_user.id
                 .separator
             %hr.separator.bottom/
-
 
 
       .heading-buttons
