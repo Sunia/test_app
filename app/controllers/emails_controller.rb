@@ -24,11 +24,24 @@ class EmailsController < ApplicationController
   # POST /emails
   # POST /emails.json
   def create
+    # Check for the listener.
     @listener = User.where(:email => params[:email][:listener_id]).first
 
     if @listener.nil?
       @listener = User.create(:email => params[:email][:listener_id], :password => "12345678")
     end
+
+    # Check for the Sender
+    params[:email][:sender_ids] = [""]
+    params[:sender_emails].each do |sender|
+      @sender = User.where(:email => sender).first
+  
+      if @sender.nil?
+        @sender = User.create(:email => sender, :password => "12345678")
+      end
+      params[:email][:sender_ids] << @sender.id
+    end
+
     params[:email][:listener_id] = @listener.id
     @email = Email.new(email_params)
     respond_to do |format|

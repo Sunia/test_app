@@ -21,7 +21,7 @@
                 %p.muted Add question to ask from all senders..
               .span9
                 %label{:for => "inputTitle"} Add question
-                = f.text_field :question, placeholder: "Add question...", required: true
+                = f.text_field :question, placeholder: "Compose question...", required: true
                 .separator
             %hr.separator.bottom/
 
@@ -32,7 +32,7 @@
                 %p.muted Add Listener on the behalf of which you want to ask question.
               .span9
                 %label{:for => "inputTitle"} Listener Name
-                = f.email_field :listener_id, placeholder: "Add Listener", required: true
+                = f.email_field :listener_id, placeholder: "Add Listener's email here", required: true
                 =# f.collection_select :listener_id, User.order(:username),:id,:username, class: "span6"  ,placeholder: "Enter Email ID ...", height: "100", width: "50"
                 .separator
             %hr.separator.bottom/
@@ -44,18 +44,12 @@
                 %p.muted Add Senders to whom you want to ask question.
               .span9
                 %label{:for => "inputTitle"} Senders
-                =# email_field :sender1, placeholder: "Add Sender", required: true
-                =# email_field :sender2, placeholder: "Add Sender", required: true
-                =# email_field :sender3, placeholder: "Add Sender", required: true
                 =# f.collection_select :sender_ids, User.order(:username), :id,:username, {:include_blank => false}, class: "span6"  ,placeholder: "Enter Email ID ...", multiple: true, required: true 
-                = f.email_field :question, placeholder: "Add Sender...", required: true
-                =# collection_select(:email, :listener_id, User.order(:username), :id, :name, {:include_blank => true}, {:multiple => true})
-                .input_fields_wrap
-                  %button.add_field_button Add More Senders
-                  %br
-                  %br
-                  %div
-                    %input{:name => "mytext[]", :type => "text"}/
+                %input{:name => "sender_emails[]", :type => "email", :placeholder => "Add Sender's Email here", :required => true}/
+                %br
+                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here", :required => true}/
+                %br
+                %input{:name => "sender_emails[]", :type => "text", :placeholder => "Add Sender's Email here", :required => true}/
  
                 // Questioner
                 = f.hidden_field :questioner_id, value: current_user.id
@@ -65,7 +59,7 @@
 
       .heading-buttons
         .buttons.pull-right{:style => "margin: 0;"}
-          = f.submit "Send Email to all Users", :class => "btn btn-primary btn-icon glyphicons ok_2"
+          = f.submit "Send Email", :class => "btn btn-primary btn-icon glyphicons ok_2"
 
 %br
 %br
